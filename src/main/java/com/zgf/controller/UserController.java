@@ -26,18 +26,6 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value="id",required=true) String id) throws Exception {
-        Hashtable<String, String> env = new Hashtable<>();
-        env.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
-        env.put(Context.PROVIDER_URL,"t3://10.66.0.50:7001");
-
-        // 初始化查找命名空间
-        Context ctx = new InitialContext(env);
-//        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/test");
-//        // 获取数据库连接
-//        Connection conn = ds.getConnection();
-//        Statement stat = conn.createStatement();
-//        stat.execute("INSERT into user VALUES ('666', 'user666')");
-//        stat.close();
         User user = userService.getUserById(id);
 
         ModelAndView mav = new ModelAndView();
